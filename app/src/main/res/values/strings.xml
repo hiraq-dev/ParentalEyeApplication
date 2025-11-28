@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Parental Eye</string>
+    <string name="action_settings">View All</string>
+    <string name="title_activity_viw_all">History</string>
+    <string name="title_activity_login">Parental Eye Login</string>
+    <string name="title_activity_register">Parental Eye Registration</string>
+
+</resources>

@@ -54,21 +54,12 @@ public class CameraService2 extends BroadcastReceiver {
             //
 
                 for (final ActivityManager.RunningAppProcessInfo aTask : alltasks) {
-                  // Global.myappname= alltasks.get(0).processName.toString();
+                   Global.myappname= alltasks.get(0).processName;
 
 
 
-                  String newString = alltasks.get(0).processName.replace("com.", "");
-                    String newString1 = newString.replace("sec.", "");
-                    String newString2 = newString1.replace("android.", "");
-                    String newString3 = newString2.replace("app.", "");
-                    String newString4 = newString3.replace("widgetapp.", "");
-                    String newString5 = newString4.replace("google.", "");
-                    String newString6 = newString5.replace("process.", "");
-                    Global.myappname = newString6.replace("service.", "");
 
-
-
+                    // Used to check for CALL screen
 
                     if (Global.myappname.equals(MainActivity.myGlobal.text)) {
                         // When user on call screen show a alert message
@@ -103,9 +94,7 @@ public class CameraService2 extends BroadcastReceiver {
                     //fd = df.format(c.getTime().toString());
 
 
-                  //  Global.mydatalog=alltasks.get(0).processName.toString();
-
-                    Global.mydatalog=Global.myappname;
+                    Global.mydatalog=alltasks.get(0).processName.toString();
                   //  int inserted=myDB.logdata(Global.mydatalog,fd);
                     Log.i(this.TAG, "===============================");
 

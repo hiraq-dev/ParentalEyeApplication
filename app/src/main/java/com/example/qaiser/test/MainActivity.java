@@ -7,10 +7,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -96,16 +93,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Source dir : " + packageInfo.sourceDir);
             Log.d(TAG, "Launch Activity :" + pm.getLaunchIntentForPackage(packageInfo.packageName));
 
-            String newString = packageInfo.processName.replace("com.", "");
-            String newString1 = newString.replace("sec.", "");
-            String newString2 = newString1.replace("android.", "");
-            String newString3 = newString2.replace("app.", "");
-            String newString4 = newString3.replace("widgetapp.", "");
-            String newString5 = newString4.replace("google.", "");
-            String newString6 = newString5.replace("process.", "");
-            String newString7 = newString6.replace("service.", "");
-
-            packagenames.add(newString7);
+            packagenames.add(packageInfo.processName);
 
 
         }
@@ -151,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         if (LoginActivity.login.myflag==true)
         {
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.content_main);
         myDB = new DataBaseHelper(this);
 
         spinner1 = (Spinner) findViewById(R.id.spinner);
@@ -169,17 +157,7 @@ public class MainActivity extends AppCompatActivity {
     //    ViewAll();
       //  updateData();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
 
-            }
-        });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -225,58 +203,34 @@ public class MainActivity extends AppCompatActivity {
                 {
                      ViwAllActivity.Global3.flag=false;
 
-                    if(spinner1.getSelectedItem().toString() != "Select Application Name" && editText1.getText().length()!= 0 && editText2.getText().length()!=0)
-                    {
-                        boolean isUpdate = myDB.UpdateData(ViwAllActivity.Global3.id1, spinner1.getSelectedItem().toString(), editText1.getText().toString(), editText2.getText().toString());
-
-                        if (isUpdate == true) {
-                            initialize();
-                            Toast.makeText(MainActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, "Data not Updated", Toast.LENGTH_SHORT).show();
-                        }
-
+                    boolean isUpdate = myDB.UpdateData(ViwAllActivity.Global3.id1,spinner1.getSelectedItem().toString(), editText1.getText().toString(), editText2.getText().toString());
+                    if (isUpdate==true && editText1.getText()!=null && editText2.getText()!=null) {
+                        initialize();
+                        Toast.makeText(MainActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        Toast.makeText(MainActivity.this, "Please Input Values Properly", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
+                    else
+                        Toast.makeText(MainActivity.this, "Data not Updated. Incomplete Data", Toast.LENGTH_SHORT).show();
                 }
 
-
-                else {
-                    if (spinner1.getSelectedItem().toString()!=("Select Application Name") && editText1.getText().length()!= 0 && editText2.getText().length()!=0)
-                    {
-
-                        boolean isInserted = myDB.insertData(spinner1.getSelectedItem().toString(), editText1.getText().toString(), editText2.getText().toString());
+                else
+                {
+                    boolean isInserted = myDB.insertData(spinner1.getSelectedItem().toString(), editText1.getText().toString(), editText2.getText().toString());
 
 
-                        if (isInserted == true) {
-                            Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
-                            initialize();
-                            myGlobal.count++;
-                        } else {
-                            Toast.makeText(MainActivity.this, "Not Saved, Try Again", Toast.LENGTH_SHORT).show();
-                        }
-
-
-
+                    if (isInserted == true) {
+                        Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        initialize();
+                        myGlobal.count++;
+                    } else {
+                        Toast.makeText(MainActivity.this, "Data Not Inserted", Toast.LENGTH_SHORT).show();
                     }
-
-                    else{
-                        Toast.makeText(MainActivity.this, "Please Input Values Properly", Toast.LENGTH_SHORT).show();
-                    }
-
-
                 }
-                if (CameraService2.Global.counter == 1)
-                    CameraService2.Global.counter = 0;
 
-                myGlobal.number = editText1.getText().toString();
-                myGlobal.msg = editText2.getText().toString();
+                if (CameraService2.Global.counter==1)
+                    CameraService2.Global.counter=0;
 
+                myGlobal.number=editText1.getText().toString() ;
+                myGlobal.msg=editText2.getText().toString() ;
 
 
             }

@@ -14,22 +14,21 @@
     android:background="#cecdd4">
 
     <Spinner
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Select an Application"
+        android:text="Select Application"
         android:id="@+id/textView"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="55dp"
         android:layout_alignParentTop="true"
-
      />
 
     <TextView
@@ -41,7 +40,6 @@
         android:layout_below="@+id/spinner"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp"
         />
 
     <Button
@@ -50,15 +48,14 @@
         android:text="Save"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:accessibilityLiveRegion="polite"
-        android:textColor="#ffffff"
-        android:background="#767070"
         android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_marginTop="78dp"
+        android:accessibilityLiveRegion="polite" />
 
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
@@ -80,13 +77,15 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignEnd="@+id/editText" />
 
 </RelativeLayout>
